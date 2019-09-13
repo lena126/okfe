@@ -1,7 +1,9 @@
 import moment from 'moment';
-import issueListJson from '../data/issueList.json';
+import issueListJson from '../../data/issueList.json';
+
 
 const ERR_OK = 0;
+// const issueDataList = require('../../data/issueList.json');
 
 export default {
   /**
@@ -27,25 +29,25 @@ export default {
    * @param {Number} id
    * @returns {String} issueBody
    */
+
   getIssue(id) {
     if (id) {
       let issue = '';
-      $.ajax({
-        url: `../data/${id}.json`,
-        async: false,
-        success(data) {
-          if (data.code === ERR_OK) {
-            issue = data.data;
-          } else {
-            issue = ''
-          }
+      console.log('getIssue', id); // eslint-disable-line
+      fetch(`./data/${id}.json`, {
+        method: "GET",
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
         },
-        error() {
-          issue = ''
-        }
-      })
+
+      }).then(response => response.json())//解析为Promise
+          .then(data => {
+            issue = data.data;
+            return issue;
+          })
       return issue;
     }
-    return '';
+    return 'issue';
   }
 }
