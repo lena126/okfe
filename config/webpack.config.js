@@ -150,7 +150,7 @@ module.exports = function(webpackEnv) {
       // of CSS changes), or refresh the page (in case of JS changes). When you
       // make a syntax error, this client will display a syntax error overlay.
       // Note: instead of the default WebpackDevServer client, we use a custom one
-      // to bring better experience for Create React App users. You can replace
+      // to bring better experience for Create React MainPage users. You can replace
       // the line below with these two lines if you prefer the stock client:
       // require.resolve('webpack-dev-server/client') + '?/',
       // require.resolve('webpack/hot/dev-server'),
@@ -327,7 +327,7 @@ module.exports = function(webpackEnv) {
                 formatter: require.resolve('react-dev-utils/eslintFormatter'),
                 eslintPath: require.resolve('eslint'),
                 resolvePluginsRelativeTo: __dirname,
-                
+
               },
               loader: require.resolve('eslint-loader'),
             },
@@ -360,7 +360,7 @@ module.exports = function(webpackEnv) {
                 customize: require.resolve(
                   'babel-preset-react-app/webpack-overrides'
                 ),
-                
+
                 plugins: [
                   [
                     require.resolve('babel-plugin-named-asset-import'),
@@ -400,7 +400,7 @@ module.exports = function(webpackEnv) {
                 ],
                 cacheDirectory: true,
                 cacheCompression: isEnvProduction,
-                
+
                 // If an error happens in a package, it's possible to be
                 // because it was compiled. Thus, we don't want the browser
                 // debugger to show the original code. Instead, the code
@@ -460,6 +460,17 @@ module.exports = function(webpackEnv) {
             },
             // Adds support for CSS Modules, but using SASS
             // using the extension .module.scss or .module.sass
+            // less
+            {
+              test: /\.less$/,
+              use: [{
+                loader: "style-loader" // creates style nodes from JS strings
+              }, {
+                loader: "css-loader" // translates CSS into CommonJS
+              }, {
+                loader: "less-loader" // compiles Less to CSS
+              }]
+            },
             {
               test: sassModuleRegex,
               use: getStyleLoaders(

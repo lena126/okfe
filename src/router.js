@@ -1,25 +1,43 @@
-class Router {
-  constructor() {
-    this.currentUrl = '';
-    this.routes = {};
-  }
+import React from 'react';
+import {HashRouter, Route, Switch} from 'react-router-dom';
+import Archive from './pages/Archive/Archive';
+import AboutUs from './pages/AboutUs/AboutUs';
+import Details from './pages/Details/Details';
+import ArticleCard from './pages/ArticleCard/ArticleCard';
+import issueListJson from './data/issueList.json';
 
-  route(path, callback) {
-    this.routes[path] = callback || (() => {});
-  }
+let routerList = [];
 
-  refresh() {
-    this.currentUrl = location.hash.slice(1) || '/';
-    const url = this.currentUrl !== undefined ? this.currentUrl : '/';
-    this.routes[this.currentUrl]();
-  }
+class BasicRoute extends React.Component{
+    constructor(props){
+        super(props);
+    }
+    componentDidMount() {
+        routerList = this.getIssueList();
+    }
 
-  init() {
-    window.addEventListener('load', this.refresh.bind(this));
-    window.addEventListener('hashchange', this.refresh.bind(this));
-  }
+    getIssueList() {
+        if (issueListJson.code === 0) {
+            const data = issueListJson.data;
+            return data;
+        }
+        return [];
+    }
+
+    render() {
+        return (
+            <HashRouter>
+                <Switch>
+                    <Route exact path="/" component={ArticleCard}/>
+                    <Route exact path="/main" component={ArticleCard}/>
+                    <Route exact path="/archive" component={Archive}/>
+                    <Route exact path="/about" component={AboutUs}/>
+                    <Route exact path="/details/:name" component={Details}/>
+                </Switch>
+        </HashRouter>
+    )
+    }
 }
 
-export default Router;
 
-
+export default BasicRoute;

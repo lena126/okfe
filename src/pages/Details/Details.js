@@ -1,17 +1,21 @@
+/**
+ * @desc [文章详情页]
+ */
 import React from 'react';
-import './details.less';
+import './Details.less';
 
 class Details extends React.Component{
     constructor(props) {
         super(props);
+
         this.state = {
             item: ''
         };
     }
 
     componentWillMount() {
-        console.log('details',this.props); // eslint-disable-line
-        this.res = this.getIssue(466181370);
+        const routerId = this.props.match.params.name;
+        this.res = this.getIssue(routerId);
     }
 
     getIssue(id) {
@@ -40,7 +44,7 @@ class Details extends React.Component{
             <div style={{display:this.props.isShow}}>
                  <div dangerouslySetInnerHTML = {{ __html:this.state.item }}></div>,
             </div>
-    )
+        )
     }
 }
 

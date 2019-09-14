@@ -1,9 +1,11 @@
+/**
+ * @desc [数据处理]
+ */
 import moment from 'moment';
 import issueListJson from '../../data/issueList.json';
 
 
 const ERR_OK = 0;
-// const issueDataList = require('../../data/issueList.json');
 
 export default {
   /**
