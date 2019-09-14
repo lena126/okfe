@@ -21,7 +21,6 @@ class Details extends React.Component{
     getIssue(id) {
         if (id) {
             let issue = '';
-            console.log('getIssue', id); // eslint-disable-line
             fetch(`./data/${id}.json`, {
                 method: "GET",
                 headers: {
