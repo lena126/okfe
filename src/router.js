@@ -34,7 +34,7 @@ class BasicRoute extends React.Component{
                     <Route exact path="/about" component={AboutUs}/>
                     <Route exact path="/details/:name" component={Details}/>
                 </Switch>
-        </HashRouter>
+            </HashRouter>
     )
     }
 }

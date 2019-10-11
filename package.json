@@ -66,6 +66,7 @@
   },
   "scripts": {
     "start": "node scripts/start.js",
+    "dev": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js"
   },
@@ -141,5 +142,17 @@
     "less-loader": "^5.0.0",
     "react-router-dom": "^5.0.1"
   },
-  "proxy": "http://localhost/3000"
+  "proxy": "http://localhost/3000",
+  "description": "This project was bootstrapped with [Create React MainPage](https://github.com/facebook/create-react-app).",
+  "main": ".postcssrc.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lena126/okfe.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lena126/okfe/issues"
+  },
+  "homepage": "https://github.com/lena126/okfe#readme"
 }
